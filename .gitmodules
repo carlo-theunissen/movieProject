@@ -1,0 +1,6 @@
+[submodule "MovieDatabaseBackend"]
+	path = MovieDatabaseBackend
+	url = https://github.com/carloboy7/MovieDatabaseBackend.git
+[submodule "MovieFrontend"]
+	path = MovieFrontend
+	url = https://github.com/carloboy7/MovieFrontend.git
