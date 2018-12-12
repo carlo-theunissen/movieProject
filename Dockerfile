@@ -1,13 +1,7 @@
-# Get tomcat image with java 10
-FROM tomcat:9.0.13-jre10
-# Set WORKDIR to root
-WORKDIR ./MovieDatabaseBackend/
-# Copy target jar file into the image
-COPY ./MovieDatabaseBackend/target/*.jar ./app.jar
-
-
 # Get latest nginx image 
 FROM nginx
+#
+COPY ./MovieDatabaseBackend/target/*.jar ./app.jar
 # Copy build into nginx image
 COPY ./MovieFrontend/dist/livePerformance/ /var/www 
 # Copy nginx config file to default.conf
@@ -18,6 +12,7 @@ RUN echo "deb http://archive.ubuntu.com/ubuntu trusty main universe" > /etc/apt/
 
 RUN apt-get -y update
 
+RUN apt-get install openjdk-7-jdk openjdk-7-jre-headless
 RUN apt-get install default-jre
 
 #copy run.sh
