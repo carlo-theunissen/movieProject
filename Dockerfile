@@ -1,25 +1,31 @@
 # Get latest nginx image 
-FROM nginx
-#
+FROM java:8
+
+EXPOSE 80
+EXPOSE 443
+
 COPY ./MovieDatabaseBackend/target/*.jar ./app.jar
 # Copy build into nginx image
 COPY ./MovieFrontend/dist/livePerformance/ /var/www 
 # Copy nginx config file to default.conf
 COPY ./nginx.conf /etc/nginx/conf.d/default.conf
 
-#installing java
-RUN echo "deb http://archive.ubuntu.com/ubuntu trusty main universe" > /etc/apt/sources.list
+#installing nginx
+RUN apt-get update
+RUN apt-get -yq install net-tools nginx
+RUN useradd -ms /bin/bash aurora
 
-RUN apt-get -y update
-RUN apt-get -y --allow-downgrades install tzdata=2014b-1
-RUN apt-get -y install tzdata-java
-RUN apt-get -y install openjdk-7-jdk openjdk-7-jre-headless
-RUN apt-get -y install default-jre
+#install supervisor
+RUN apt-get install -y supervisor
+COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
-#copy run.sh
-COPY ./run.sh ./run.sh
+#correct permisions
+RUN chmod 777 ./app.jar
+RUN chmod 777 ./etc/supervisor/conf.d/supervisord.conf
+RUN chmod -R 777 ./var/www
+RUN chmod 777 ./etc/nginx/conf.d/default.conf
 
-RUN chmod -R 777 .
+RUN which java
 
-# Run server
-CMD ./run.sh
+#run supervisord
+CMD ["/usr/bin/supervisord"]
