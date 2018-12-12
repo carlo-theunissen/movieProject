@@ -4,6 +4,9 @@ pipeline {
     disableConcurrentBuilds()
     timeout(time: 10, unit: 'MINUTES')
   }
+  tools {
+    maven 'maven 3.6.0'
+  }
   stages {
     stage('checking out submodules') {
       steps {
