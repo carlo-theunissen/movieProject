@@ -67,7 +67,7 @@ pipeline {
        steps {
          sh 'docker build -t application .'
          sh 'docker rm -f i application || true'
-         sh 'docker run -d -p 8090:8090 --name application application'
+         sh 'docker run -d -p 80:80 --name application application'
          sh 'docker image prune -f'
        }
      }
