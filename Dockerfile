@@ -13,4 +13,4 @@ COPY ./MovieFrontend/dist/livePerformance/ /var/www
 # Copy nginx config file to default.conf
 COPY ./nginx.conf /etc/nginx/conf.d/default.conf
 # Run server
-CMD ./run.sh
+CMD run.sh
