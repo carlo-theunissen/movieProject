@@ -47,11 +47,12 @@ pipeline {
           )
       }
     }
+    /*
     stage('Test') {
       steps {
         parallel(
           backend : {
-            //sh 'mvn test -f MovieDatabaseBackend/'
+            sh 'mvn test -f MovieDatabaseBackend/'
           }
         //,frontend : {
         //  sh 'pushd MovieFrontend && ng e2e && popd'
@@ -60,10 +61,11 @@ pipeline {
       }
       //post {
       //  always {
-      //    junit '**/target/surefire-reports/*.xml'
+      //    junit '** /target/surefire-reports/*.xml'
       //  }
       //}
     }
+    */
     stage('Deploy') {
        steps {
          sh 'chmod -R 777 .'
