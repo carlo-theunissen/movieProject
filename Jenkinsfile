@@ -65,9 +65,9 @@ pipeline {
     }
     stage('Deploy') {
        steps {
-         sh 'docker build -t isaak-backend .'
-         sh 'docker rm -f isaak-backend || true'
-         sh 'docker run -d -p 8090:8090 --name isaak-backend isaak-backend'
+         sh 'docker build -t application .'
+         sh 'docker rm -f i application || true'
+         sh 'docker run -d -p 8090:8090 --name application application'
          sh 'docker image prune -f'
        }
      }
