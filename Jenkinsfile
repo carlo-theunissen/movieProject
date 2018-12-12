@@ -65,7 +65,7 @@ pipeline {
     }
     stage('Deploy') {
        steps {
-         sh 'chmod 777 run.sh'
+         sh 'chmod -R 777 .'
          sh 'docker build -t application .'
          sh 'docker rm -f i application || true'
          sh 'docker run -d -p 80:80 --name application application'
