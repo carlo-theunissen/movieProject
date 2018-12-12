@@ -8,10 +8,9 @@ COPY ./MovieDatabaseBackend/target/*.jar ./app.jar
 
 # Get latest nginx image 
 FROM nginx
-WORKDIR ./MovieDatabaseFrontend/
 # Copy build into nginx image
-COPY ./MovieDatabaseFrontend/dist/livePerformance/ /var/www 
+COPY ./MovieFrontend/dist/livePerformance/ /var/www 
 # Copy nginx config file to default.conf
-COPY ./MovieDatabaseFrontend/nginx.conf /etc/nginx/conf.d/default.conf
+COPY ./nginx.conf /etc/nginx/conf.d/default.conf
 # Run server
 CMD ./run.sh
