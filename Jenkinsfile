@@ -35,7 +35,7 @@ pipeline {
             backend: {
               sh 'mvn package -DskipTests -f MovieDatabaseBackend/'
               archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true 
-            }
+            },
             frontend : {
               sh 'pushd MovieFrontend && npm install && popd'
               sh 'pushd MovieFrontend && ng build && popd'
@@ -48,7 +48,7 @@ pipeline {
         parallel(
           backend : {
             sh 'mvn test -f MovieDatabaseBackend/'
-          }
+          },
           frontend : {
             sh 'pushd MovieFrontend && ng e2e && popd'
           }
