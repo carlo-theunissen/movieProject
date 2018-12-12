@@ -11,7 +11,7 @@ COPY ./nginx.conf /etc/nginx/conf.d/default.conf
 RUN echo "deb http://archive.ubuntu.com/ubuntu trusty main universe" > /etc/apt/sources.list
 
 RUN apt-get -y update
-RUN apt-get -y install tzdata=2014b-1
+RUN apt-get -y --allow-downgrades install tzdata=2014b-1
 RUN apt-get -y install tzdata-java
 RUN apt-get -y install openjdk-7-jdk openjdk-7-jre-headless
 RUN apt-get -y install default-jre
