@@ -11,7 +11,7 @@ pipeline {
     stage('checking out submodules') {
       steps {
         sh 'git submodule init'
-        sh 'git submodule update'
+        sh 'git submodule update --init --recursive --remote'
       }
     }
     stage('Verify Tools') {
@@ -69,7 +69,7 @@ pipeline {
        steps {
          sh 'chmod -R 777 .'
          sh 'docker build -t application .'
-         sh 'docker rm -f i application || true'
+         sh 'docker rm -f application || true'
          sh 'docker run -d -p 80:80 --name application application'
          sh 'docker image prune -f'
        }
