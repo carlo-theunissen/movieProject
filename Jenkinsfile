@@ -51,10 +51,10 @@ pipeline {
         parallel(
           backend : {
             sh 'mvn test -f MovieDatabaseBackend/'
-          },
-          frontend : {
-            sh 'pushd MovieFrontend && ng e2e && popd'
           }
+        //,frontend : {
+        //  sh 'pushd MovieFrontend && ng e2e && popd'
+          //}
         )
       }
       //post {
