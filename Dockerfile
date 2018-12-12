@@ -13,6 +13,7 @@ COPY ./MovieFrontend/dist/livePerformance/ /var/www
 # Copy nginx config file to default.conf
 COPY ./nginx.conf /etc/nginx/conf.d/default.conf
 
+FROM openjdk:8-jre-alpine
 COPY ./run.sh ./run.sh
 # Run server
 CMD ./run.sh
