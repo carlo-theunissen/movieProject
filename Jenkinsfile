@@ -46,7 +46,7 @@ pipeline {
           )
       }
     }
-    /*
+    
     stage('Test') {
       steps {
         parallel(
@@ -64,7 +64,7 @@ pipeline {
       //  }
       //}
     }
-    */
+    
     stage('Deploy') {
        steps {
          sh 'chmod -R 777 .'
